@@ -5,11 +5,13 @@ client = ollama.Client()
 
 def review_code(content):
     prompts = (
-        f'Review this code. Rate the code as "bad", "mediocre", "decent", or "good"; alert any security vulnerabilities first such as SQL injection and risks of attacks. '
+        f'Review this code. classify the script as either "bad", "mediocre", "decent", or "good"; alert any security vulnerabilities first such as SQL injection and risks of attacks. '
         f'Provide suggestions for improvement, coding best practices, and improving readability and maintainability. Provide code examples for your suggestion.\n\n{content}'
     )
-
-    response = client.generate(model='codellama:7b', prompt=prompts)
+    
+    # if tak guna llm cauditor guna ja codellama
+    # response = client.generate(model='codellama:13b', prompt=prompts)
+    response = client.generate(model='cauditor', prompt=prompts)
     
     if 'response' in response:
         return response['response']
