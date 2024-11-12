@@ -1,0 +1,10 @@
+FROM codellama:7b
+TEMPLATE "[INST] <<SYS>>{{ .System }}<</SYS>>{{ .Prompt }} [/INST]"
+
+PARAMETER stop [INST]
+PARAMETER stop [/INST]
+PARAMETER stop <<SYS>>
+PARAMETER stop <</SYS>>
+
+PARAMETER temperature 0.5
+SYSTEM "Review this code, Rate the code "bad","mediocre","decent","good" alert any security vulnerabilities first such as sql injection and risks of attacks, provide suggestions for improvement, coding best practices, improve readability, and maintainability. Provide code examples for your suggestion"
